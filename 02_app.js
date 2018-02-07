@@ -2,7 +2,43 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
+const transforme_en_tableau = (membres) => {
+	let htmlMembres = "<DOCTYPE html>"
+	htmlMembres += "<head>";
+	htmlMembres += "<meta charset='utf-8'>";
+	htmlMembres += "</head>";
+	htmlMembres += "<body>";
+	htmlMembres += "<h1>Les Provinces du Canada</h1>";
+	htmlMembres = "<table>";
+	htmlMembres += "<tr>";
+    htmlMembres += "<th>Prénoms</th>";
+    htmlMembres += "<th>Noms</th>";
+    htmlMembres += "<th>Téléphones</th>";
+    htmlMembres += "<th>Courriels</th>";
+    htmlMembres += "</tr>";
 
+	for(elm of membres){
+		htmlMembres+= "<tr>";
+		htmlMembres+= "<td>" + elm.prenom +"</td>";
+		htmlMembres+= "<td>" + elm.nom +"</td>";
+		htmlMembres+= "<td>" + elm.telephone +"</td>";
+		htmlMembres+= "<td>" + elm.courriel +"</td>";
+		htmlMembres+= "</tr>";
+		// for (var p in elm){
+		// 	htmlMembres+= "<tr>";
+		// 	htmlMembres+= "<td>" + p +"</td>";
+		// 	htmlMembres+= "<td>" + membres[p] +"</td>";
+		// 	htmlMembres+= "</tr>";
+		// }
+	}
+
+
+	htmlMembres +="</table>";
+	htmlMembres += "</body>";
+	htmlMembres +="</html>" 
+
+	return htmlMembres;
+}
 
 
 app.use(express.static('public'));
@@ -30,7 +66,7 @@ app.get('/traiter_get', (req, res) =>{
 		courriel:req.query.courriel
 	};
 
-	console.log(reponse);
+	//console.log(reponse);
 	res.end(JSON.stringify(reponse));
 
 	fs.readFile('public/data/membres.json', 'utf8', function (err, data) {
@@ -38,7 +74,7 @@ app.get('/traiter_get', (req, res) =>{
 		let membres = JSON.parse(data);
 		membres.push(reponse);
 		
-		console.log(membres);
+		//console.log(membres);
 
 		fs.writeFile('public/data/membres.json', JSON.stringify(membres), (err) => {
 			if (err) throw err;
@@ -48,9 +84,17 @@ app.get('/traiter_get', (req, res) =>{
 	
 
 });
+
 ///////////////////////////////////////////////////// Route /membres
 app.get('/membres', (req, res)=>{
-	
+
+	fs.readFile('public/data/membres.json', 'utf8', function (err, data) {
+		if (err) throw err;
+		let membres = JSON.parse(data);
+		res.end(transforme_en_tableau(membres))
+	});
+
+
 });
 
 var server = app.listen(8081, function () {
