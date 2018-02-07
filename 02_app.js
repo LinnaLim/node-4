@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 ///////////////////////////////////////////////////// Route /html/01_form.html
-app.get('/html/01_form.htm', function (req, res) {
+app.get('/formulaire', function (req, res) {
 	console.log(__dirname);
-	res.sendFile( __dirname + "/" + "01_form.htm" );
+	res.sendFile( __dirname + "/public/html/" + "01_form.htm" );
 })
 /////////////////////////////////////////////////// Route /
 app.get('/', (req, res) => {
