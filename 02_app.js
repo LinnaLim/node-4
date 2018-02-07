@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 	res.end('<h1>Accueil</h1>')
 })
 /////////////////////////////////////////////////// Route /traiter_get
-app.get('/traiter_get', function (req, res) {
+app.get('/traiter_get', (req, res) =>{
 	// Preparer l'output en format JSON
 
 	console.log('la route /traiter_get')
@@ -24,6 +24,10 @@ app.get('/traiter_get', function (req, res) {
 	};
 	console.log(reponse);
 	res.end(JSON.stringify(reponse));
+});
+
+app.get('/membres', (req, res)=>{
+	res.sendFile( __dirname + "/public/data/" + "membres.txt" );
 });
 
 var server = app.listen(8081, function () {
