@@ -1,69 +1,77 @@
-/* MENU */
 body {
   display: flex;
   flex-direction: column;
   font-family: arial;
+  /*////////////////////////// HEADER */
+
+  /*FIN HEADER */
+
+  /*////////////////////////// FOOTER */
+
+  /* FIN FOOTER */
+
 }
-footer,
-header {
+body header {
   background-color: #34495e;
-}
-header {
   display: flex;
   flex-direction: column;
   padding: 5px;
+  /*////////////////////////// NAVIGATION */
+
 }
-header h1 {
-  color: #fff;
+body header h1 {
+  color: #ffffff;
   margin: 0 auto;
   padding: 1em;
 }
-/* MENU */
-header nav ul {
+body header nav ul {
   list-style-type: none;
   padding: 0.5em;
   margin: 0 auto;
 }
-header nav ul li {
+body header nav ul li {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-header nav ul li a {
+body header nav ul li a {
   display: flex;
   justify-content: center;
   text-decoration: none;
   font-size: 150%;
   padding: 0.5em;
-  color: #fff;
+  color: #ffffff;
   flex: 1;
   transition: background-color 1s;
 }
-header nav ul li a:hover {
-  background-color: #aaa;
+body header nav ul li a:hover {
+  background-color: #aaaaaa;
 }
-/* //////////////////////////////////////////// FOOTER */
-footer {
+body footer {
+  background-color: #34495e;
+  color: #ffffff;
   height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-footer div {
+body footer div {
   width: 5%;
 }
-footer div i {
-  color: #fff;
+body footer div i {
+  color: #ffffff;
   transition: color 1s;
 }
-footer div i:hover,
-footer div a:hover {
-  color: #ccc;
+body footer div i:hover {
+  color: #cccccc;
 }
-footer div a {
-  color: #fff;
+body footer div a {
+  color: #ffffff;
   text-decoration: none;
+}
+body footer div a:hover {
+  color: #cccccc;
 }
 /* //////////////////////////////////////////// Ipad */
 @media only screen and (min-width: 700px) {
