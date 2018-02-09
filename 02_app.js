@@ -2,30 +2,30 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
+
 const transforme_en_tableau = (membres) => {
 	let htmlMembres = "<DOCTYPE html>"
-	htmlMembres += "<head>";
-	htmlMembres += "<meta charset='utf-8'>";
-	htmlMembres += "</head>";
 	htmlMembres += "<body>";
-	htmlMembres += "<h1>Les Provinces du Canada</h1>";
+	htmlMembres += "<h1>La liste de nos membres</h1>";
 	htmlMembres = "<table>";
 	htmlMembres += "<tr>";
     htmlMembres += "<th>Prénoms</th>";
     htmlMembres += "<th>Noms</th>";
     htmlMembres += "<th>Téléphones</th>";
     htmlMembres += "<th>Courriels</th>";
+    htmlMembres += "<th>Id</th>";
     htmlMembres += "</tr>";
 
+    /* chercher tous les éléments dans membres*/
 	for(elm of membres){
 		htmlMembres+= "<tr>";
-		htmlMembres+= "<td>" + elm.prenom +"</td>";
-		htmlMembres+= "<td>" + elm.nom +"</td>";
-		htmlMembres+= "<td>" + elm.telephone +"</td>";
-		htmlMembres+= "<td>" + elm.courriel +"</td>";
+
+		/* chercher tout les produits dans les éléments*/
+		for (p in elm){
+			htmlMembres+= "<td>" + elm[p] +"</td>";
+		}
 		htmlMembres+= "</tr>";
 	}
-
 
 	htmlMembres +="</table>";
 	htmlMembres += "</body>";
@@ -63,6 +63,7 @@ app.get('/traiter_get', (req, res) =>{
 	//console.log(reponse);
 	res.end(JSON.stringify(reponse));
 
+	// Lire le fichier JSON
 	fs.readFile('public/data/membres.json', 'utf8', function (err, data) {
 		if (err) throw err;
 		let membres = JSON.parse(data);
@@ -70,6 +71,7 @@ app.get('/traiter_get', (req, res) =>{
 		
 		//console.log(membres);
 
+		// Modifier le fichier JSON avec les nouvelles admission
 		fs.writeFile('public/data/membres.json', JSON.stringify(membres), (err) => {
 			if (err) throw err;
 		});
@@ -81,13 +83,14 @@ app.get('/traiter_get', (req, res) =>{
 
 ///////////////////////////////////////////////////// Route /membres
 app.get('/membres', (req, res)=>{
-
+	// Lire le fichier JSON
 	fs.readFile('public/data/membres.json', 'utf8', function (err, data) {
 		if (err) throw err;
 		let membres = JSON.parse(data);
+		res.writeHead(200, {"Content-Type" : "text/html; charset=UTF-8"});
+		// Appel la fonction pour mettre le JSON en tableau HTML
 		res.end(transforme_en_tableau(membres))
 	});
-
 
 });
 
