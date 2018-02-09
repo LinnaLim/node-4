@@ -24,12 +24,6 @@ const transforme_en_tableau = (membres) => {
 		htmlMembres+= "<td>" + elm.telephone +"</td>";
 		htmlMembres+= "<td>" + elm.courriel +"</td>";
 		htmlMembres+= "</tr>";
-		// for (var p in elm){
-		// 	htmlMembres+= "<tr>";
-		// 	htmlMembres+= "<td>" + p +"</td>";
-		// 	htmlMembres+= "<td>" + membres[p] +"</td>";
-		// 	htmlMembres+= "</tr>";
-		// }
 	}
 
 

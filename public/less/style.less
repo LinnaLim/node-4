@@ -1,0 +1,114 @@
+body {
+	display:flex;
+	flex-direction:column;
+	font-family:arial;
+}
+
+footer,header {
+	background-color:#34495e;
+}
+
+header {
+	display:flex;
+	flex-direction:column;
+	padding:5px;
+}
+
+
+header h1 {
+	color: #fff;
+	margin: 0 auto;
+	padding: 1em;
+}
+
+/* MENU */
+header nav ul {
+	list-style-type:none;
+	padding:0.5em;
+	margin: 0 auto;
+}
+
+header nav ul li {
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-start;
+}
+
+header nav ul li a {
+	display:flex;
+	justify-content: center;
+	text-decoration:none;
+	font-size:150%;
+	padding:0.5em;
+	color:#fff;
+	flex:1;
+	transition:background-color 1s;
+}
+
+header nav ul li a:hover {
+	background-color:#aaa;
+}
+
+
+
+/* //////////////////////////////////////////// FOOTER */
+footer{
+	height:80px;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	align-items:center;
+}
+footer div {
+	width:5%;
+}
+
+footer div i {
+	color:#fff;
+	transition:color 1s;
+}
+
+footer div i:hover, footer div a:hover {
+	color:#ccc;
+}
+
+footer div a {
+	color:#fff;
+	text-decoration: none;
+}
+
+
+/* //////////////////////////////////////////// Ipad */
+@media only screen and (min-width: 700px) {
+	header {
+		flex-direction:column;
+		justify-content:space-between;
+		align-items:center;
+	}
+
+	header nav {
+		display:flex;
+		flex:1;
+	}
+
+	header nav ul {
+		display:flex;
+		flex:1;
+		flex-direction:row;
+		justify-content:space-around;
+	}
+
+	footer div a .fa {
+		font-size: 2em;
+	}
+}
+
+
+/* //////////////////////////////////////////// Grand Écran */
+@media only screen and (min-width: 1100px) {
+	header {
+		flex-direction:row;
+		justify-content:space-between;
+		align-items:center;
+	}
+}
